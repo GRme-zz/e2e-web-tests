@@ -16,7 +16,7 @@ module.exports = {
       return client.url('http://www.google.com');
     },
 
-    checkAllElementsAreVisible(client) {
+    checkAllElementsAreVisibleWithoutAsync(client) {
       return client
         //selector 'invalidGoogleLogo' can not be found
         .waitForElementVisible(invalidGoogleLogo, 5000)
@@ -24,6 +24,16 @@ module.exports = {
         .waitForElementVisible(invalidSearchField, 5000)
         //selector 'invalidSearchButton' can not be found
         .waitForElementVisible(invalidSearchButton, 5000);
+    },
+
+    async checkAllElementsAreVisibleWithAsync(client) {
+      //selector 'invalidGoogleLogo' can not be found
+      await client.waitForElementVisible(invalidGoogleLogo, 5000);
+      //selector 'invalidSearchField' can not be found
+      await client.waitForElementVisible(invalidSearchField, 5000);
+      //selector 'invalidSearchButton' can not be found
+      await client.waitForElementVisible(invalidSearchButton, 5000);
+      return client;
     },
   }]
 };
