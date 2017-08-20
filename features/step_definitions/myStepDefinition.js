@@ -9,15 +9,18 @@ const myPage = client.page.myPageView();
 
 defineSupportCode(({Given, When, Then}) => {
 
-  When(/^go to google main page$/, () => {
-    return myPage.goToGoogleMainPage(client);
+  When(/^go to google main page$/, async () => {
+    await myPage.goToGoogleMainPage(client);
+    return client;
   });
 
-  Then(/^all necessary elements are visible without async$/, () => {
-    return myPage.checkAllElementsAreVisibleWithoutAsync(client);
+  Then(/^all necessary elements are visible without async$/, async () => {
+    await myPage.checkAllElementsAreVisibleWithoutAsync(client);
+    return client;
   });
 
-  Then(/^all necessary elements are visible with async$/, () => {
-    return myPage.checkAllElementsAreVisibleWithAsync(client);
+  Then(/^all necessary elements are visible with async$/, async () => {
+    await myPage.checkAllElementsAreVisibleWithAsync(client);
+    return client;
   });
 });

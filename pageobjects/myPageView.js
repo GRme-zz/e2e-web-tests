@@ -10,30 +10,33 @@ const invalidSearchButton = 'input[name="btnK123"]';
 
 module.exports = {
   elements: {},
-  commands: [{
+  commands: [
+    {
+      async goToGoogleMainPage(client) {
+        return await client.url("http://www.google.com");
+      },
 
-    goToGoogleMainPage(client) {
-      return client.url('http://www.google.com');
-    },
+      checkAllElementsAreVisibleWithoutAsync(client) {
+        return (
+          client
+            //selector 'invalidGoogleLogo' can not be found
+            .waitForElementIsVisible(validGoogleLogo)
+            //selector 'invalidSearchField' can not be found
+            .waitForElementIsVisible(validSearchField)
+            //selector 'invalidSearchButton' can not be found
+            .waitForElementIsVisible(validSearchButton)
+        );
+      },
 
-    checkAllElementsAreVisibleWithoutAsync(client) {
-      return client
+      async checkAllElementsAreVisibleWithAsync(client) {
         //selector 'invalidGoogleLogo' can not be found
-        .waitForElementVisible(invalidGoogleLogo, 5000)
+        await client.waitForElementVisible(validGoogleLogo);
         //selector 'invalidSearchField' can not be found
-        .waitForElementVisible(invalidSearchField, 5000)
+        await client.waitForElementVisible(validSearchField);
         //selector 'invalidSearchButton' can not be found
-        .waitForElementVisible(invalidSearchButton, 5000);
-    },
-
-    async checkAllElementsAreVisibleWithAsync(client) {
-      //selector 'invalidGoogleLogo' can not be found
-      await client.waitForElementVisible(invalidGoogleLogo, 5000);
-      //selector 'invalidSearchField' can not be found
-      await client.waitForElementVisible(invalidSearchField, 5000);
-      //selector 'invalidSearchButton' can not be found
-      await client.waitForElementVisible(invalidSearchButton, 5000);
-      return client;
-    },
-  }]
+        await client.waitForElementVisible(validSearchButton);
+        return client;
+      }
+    }
+  ]
 };
