@@ -6,9 +6,9 @@
   "scripts": {
     "test": "./node_modules/.bin/nightwatch",
     "test-chrome": "./node_modules/.bin/nightwatch --env chrome",
-    "npm-test-chrome": "rm -Rf ./node_modules/ && npm install && npm install -y nightwatch-cucumber@7.1.11 && npm install -y chromedriver@2.31.0 && npm install -y geckodriver@1.7.1 && npm install -y cucumber-html-reporter@2.0.3 && npm install -y multiple-cucumber-html-reporter@0.2.1 && ./node_modules/.bin/nightwatch --env chrome",
+    "npm-test-chrome": "rm -Rf ./node_modules/ && npm install && npm install -y nightwatch-cucumber@7.3.1 && npm install -y chromedriver@2.31.0 && npm install -y geckodriver@1.7.1 && npm install -y cucumber-html-reporter@2.0.3 && npm install -y multiple-cucumber-html-reporter@0.2.1 && ./node_modules/.bin/nightwatch --env chrome",
     "test-firefox": "./node_modules/.bin/nightwatch --env firefox",
-    "npm-test-firefox": "rm -Rf ./node_modules/ && npm install && npm install -y nightwatch-cucumber@7.1.11 && npm install -y chromedriver@2.31.0 && npm install -y geckodriver@1.7.1 && npm install -y cucumber-html-reporter@2.0.3 && npm install -y multiple-cucumber-html-reporter@0.2.1 && ./node_modules/.bin/nightwatch --env firefox",
+    "npm-test-firefox": "rm -Rf ./node_modules/ && npm install && npm install -y nightwatch-cucumber@7.3.1 && npm install -y chromedriver@2.31.0 && npm install -y geckodriver@1.7.1 && npm install -y cucumber-html-reporter@2.0.3 && npm install -y multiple-cucumber-html-reporter@0.2.1 && ./node_modules/.bin/nightwatch --env firefox",
     "test-safari": "./node_modules/.bin/nightwatch --env safari",
     "test-parallel": "./node_modules/.bin/nightwatch --env chrome,firefox"
   },
@@ -19,7 +19,7 @@
     "arraylist": "^0.1.0",
     "chai": "^4.1.0",
     "chromedriver": "^2.31.0",
-    "cucumber": "^2.3.1",
+    "cucumber": "^3.0.0",
     "cucumber-html-report": "^0.6.0",
     "cucumber-html-reporter": "^2.0.3",
     "geckodriver": "^1.7.1",
@@ -27,7 +27,7 @@
     "moment": "2.18.1",
     "multiple-cucumber-html-reporter": "^0.2.1",
     "nightwatch": "^0.9.16",
-    "nightwatch-cucumber": "^7.1.11",
+    "nightwatch-cucumber": "^7.3.1",
     "phantomjs-prebuilt": "^2.1.14",
     "selenium-server-standalone-jar": "^3.4.0",
     "selenium-webdriver": "^3.5.0"
