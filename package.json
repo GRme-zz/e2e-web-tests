@@ -1,7 +1,7 @@
 {
-  "name": "mytests",
-  "version": "0.0.1",
-  "description": "some tests",
+  "name": "e2e-web-tests",
+  "version": "0.0.3",
+  "description": "end to end tests for web frontend",
   "main": "app.js",
   "scripts": {
     "test": "./node_modules/.bin/nightwatch",
@@ -18,18 +18,18 @@
     "array-equal": "^1.0.0",
     "arraylist": "^0.1.0",
     "chai": "^4.1.0",
-    "chromedriver": "^2.31.0",
+    "chromedriver": "2.31.0",
     "cucumber": "^2.3.1",
     "cucumber-html-report": "^0.6.0",
     "cucumber-html-reporter": "^2.0.3",
-    "geckodriver": "^1.7.1",
+    "geckodriver": "1.7.1",
     "intl": "^1.2.5",
     "moment": "2.18.1",
     "multiple-cucumber-html-reporter": "^0.2.1",
     "nightwatch": "^0.9.16",
     "nightwatch-cucumber": "^7.3.1",
-    "phantomjs-prebuilt": "^2.1.14",
-    "selenium-server-standalone-jar": "^3.4.0",
+    "phantomjs-prebuilt": "^2.1.15",
+    "selenium-server-standalone-jar": "^3.5.0",
     "selenium-webdriver": "^3.5.0"
   },
   "dependencies": {
