@@ -1,3 +1,5 @@
+const assert = require("assert");
+
 //selectors
 const validGoogleLogo = 'div[id="hplogo"]';
 const validSearchField = 'input[id="lst-ib"]';
@@ -36,6 +38,10 @@ module.exports = {
         //selector 'invalidSearchButton' can not be found
         await client.waitForElementVisible(validSearchButton);
         return client;
+      },
+
+      testIsRunning() {
+        return assert.equal(true, true);
       }
     }
   ]

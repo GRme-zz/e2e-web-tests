@@ -15,4 +15,8 @@ defineSupportCode(({ Given, When, Then }) => {
   Then(/^all necessary elements are visible with async$/, () => {
     return myPage.checkAllElementsAreVisibleWithAsync(client);
   });
+
+  When(/^a test is running$/, () => {
+    return myPage.testIsRunning();
+  });
 });

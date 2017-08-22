@@ -5,7 +5,11 @@ Feature: only a test feature
     When go to google main page
     Then all necessary elements are visible without async
 
-  @run
+  @ru
   Scenario: only a first test with async
     When go to google main page
     Then all necessary elements are visible with async
+
+  @run
+  Scenario: test scenario
+    When a test is running
