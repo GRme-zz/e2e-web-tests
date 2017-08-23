@@ -15,7 +15,7 @@ pipeline {
         sh '(sudo ${params.docker} stop $(sudo ${params.docker} ps -a -q) || echo "------ all Docker containers are still stopped ------")'
         echo "------ remove all Docker containers ------"
         sh '(sudo ${params.docker} rm $(sudo ${params.docker} ps -a -q) || sudo echo "------ all Docker containers are still removed ------")'
-        echo "------ pull Docker image '"{params.docker_image}"' from Docker Cloud ------"
+        echo "------ pull Docker image from Docker Cloud ------"
         sh 'sudo ${params.docker} pull "${params.docker_image}"'
         echo "------ start Docker container from image ------"
         sh 'sudo ${params.docker} run -d -t -i -v $(pwd):/my_tests/ "${params.docker_image}" /bin/bash'
