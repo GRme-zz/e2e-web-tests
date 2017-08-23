@@ -38,10 +38,6 @@ pipeline {
     always {
       echo "------ generate Cucumber report ------"
       cucumber "**/cucumber.json"
-      echo "------ send mail ------"
-      mail to: "martin@just-qa.de",
-             subject: "Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Something is wrong with ${env.BUILD_URL}"
     }
   }
 }
