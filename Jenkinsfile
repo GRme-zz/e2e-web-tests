@@ -11,7 +11,8 @@ pipeline {
     stage('Test') {
       steps {
         echo "=================================="
-        sh 'docker ps -a'
+        echo "${params.docker}"
+        sh 'sudo ${params.docker} ps -a'
         echo "=================================="
       }
     }
