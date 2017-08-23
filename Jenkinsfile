@@ -5,6 +5,7 @@ pipeline {
     string(defaultValue: 'grme/nightwatch-chrome-firefox:0.0.3', description: '', name: 'docker_image')
     string(defaultValue: 'npm-test-chrome', description: '', name: 'run_script_method')
     string(defaultValue: '/Applications/Docker.app/Contents/Resources/bin/docker', description: '', name: 'docker')
+    choice(choices: '1\n2\n3\n4\n5', description: '', name: 'retry_count')
   }
 
   stages {
@@ -25,7 +26,9 @@ pipeline {
         echo "------ start Docker container from image ------"
         sh "sudo ${params.docker} run -d -t -i -v \$(pwd):/my_tests/ \"${params.docker_image}\" /bin/bash"
         echo "------ execute end2end tests on Docker container ------"
-        sh "sudo ${params.docker} exec -i \$(sudo ${params.docker} ps --format \"{{.Names}}\") bash -c \"cd /my_tests && xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} || true && google-chrome --version && firefox --version\""
+        retry(${params.docker}) {
+          sh "sudo ${params.docker} exec -i \$(sudo ${params.docker} ps --format \"{{.Names}}\") bash -c \"cd /my_tests && xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} || true && google-chrome --version && firefox --version\""
+        }
         echo "------ cleanup all temporary files ------"
         sh "sudo rm -Rf \$(pwd)/tmp-*"
         sh "sudo rm -Rf \$(pwd)/.com.google*"
@@ -44,6 +47,10 @@ pipeline {
   post {
     always {
       cucumber '**/cucumber.json'
+      deleteDir()
+      mail to: 'martin@just-qa.de',
+             subject: "Pipeline: ${currentBuild.fullDisplayName}",
+             body: "Something is wrong with ${env.BUILD_URL}"
     }
   }
 }
