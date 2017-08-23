@@ -21,7 +21,7 @@ pipeline {
         sh "sudo ${params.docker} run -d -t -i -v \$(pwd):/my_tests/ \"${params.docker_image}\" /bin/bash"
         echo "------ execute end2end tests on Docker container ------"
         retry(3) {
-          sh "sudo ${params.docker} exec -i \$(sudo ${params.docker} ps --format \"{{.Names}}\") bash -c \"cd /my_tests && xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} || true && google-chrome --version && firefox --version\""
+          sh "sudo ${params.docker} exec -i \$(sudo ${params.docker} ps --format \"{{.Names}}\") bash -c \"cd /my_tests && xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} || true && google-chrome --version && firefox --version && npm outdated\""
         }
         echo "------ cleanup all temporary files ------"
         sh "sudo rm -Rf \$(pwd)/tmp-*"
@@ -33,7 +33,6 @@ pipeline {
         echo "------ remove all Docker containers again ------"
         sh "(sudo ${params.docker} rm \$(sudo ${params.docker} ps -a -q) || sudo echo \"------ all Docker containers are still removed ------\")"
         echo "------ outdated npm packages in project ------"
-        sh "npm outdated"
       }
     }
   }
