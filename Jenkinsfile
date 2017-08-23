@@ -35,6 +35,8 @@ pipeline {
         sh "(sudo ${params.docker} stop \$(sudo ${params.docker} ps -a -q) || sudo echo \"------ all Docker containers are still stopped ------\")"
         echo "------ remove all Docker containers again ------"
         sh "(sudo ${params.docker} rm \$(sudo ${params.docker} ps -a -q) || sudo echo \"------ all Docker containers are still removed ------\")"
+        echo "------ outdated npm packages in project ------"
+        sh "npm outdated"
       }
     }
   }
