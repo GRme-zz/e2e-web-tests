@@ -12,7 +12,7 @@ pipeline {
       steps {
         echo "=========================================="
         sh "sudo ${params.docker} ps -a"
-        sh "echo "*******blablabla*******""
+        sh "echo \"*******blablabla*******\""
         echo "=========================================="
       }
     }
