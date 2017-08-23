@@ -30,14 +30,8 @@ pipeline {
         sh "(sudo ${params.docker} stop \$(sudo ${params.docker} ps -a -q) || sudo echo \"------ all Docker containers are still stopped ------\")"
         echo "------ remove all Docker containers again ------"
         sh "(sudo ${params.docker} rm \$(sudo ${params.docker} ps -a -q) || sudo echo \"------ all Docker containers are still removed ------\")"
+        cucumber "**/cucumber.json"
       }
-    }
-  }
-
-  post {
-    always {
-      echo "------ generate Cucumber report ------"
-      cucumber "**/cucumber.json"
     }
   }
 }
