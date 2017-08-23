@@ -32,15 +32,17 @@ pipeline {
         sh "(sudo ${params.docker} stop \$(sudo ${params.docker} ps -a -q) || sudo echo \"------ all Docker containers are still stopped ------\")"
         echo "------ remove all Docker containers again ------"
         sh "(sudo ${params.docker} rm \$(sudo ${params.docker} ps -a -q) || sudo echo \"------ all Docker containers are still removed ------\")"
-        echo "------ outdated npm packages in project ------"
       }
     }
   }
 
   post {
     always {
+      echo "------ generate Cucumber report ------"
       cucumber "**/cucumber.json"
+      echo "------ delete directory content ------"
       deleteDir()
+      echo "------ send mail ------"
       mail to: "martin@just-qa.de",
              subject: "Pipeline: ${currentBuild.fullDisplayName}",
              body: "Something is wrong with ${env.BUILD_URL}"
