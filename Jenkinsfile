@@ -5,7 +5,6 @@ pipeline {
     string(defaultValue: 'grme/nightwatch-chrome-firefox:0.0.3', description: '', name: 'docker_image')
     string(defaultValue: 'npm-test-chrome', description: '', name: 'run_script_method')
     string(defaultValue: '/Applications/Docker.app/Contents/Resources/bin/docker', description: '', name: 'docker')
-    string(defaultValue: '3', description: '', name: 'retry_count')
   }
 
   stages {
@@ -21,7 +20,7 @@ pipeline {
         echo "------ start Docker container from image ------"
         sh "sudo ${params.docker} run -d -t -i -v \$(pwd):/my_tests/ \"${params.docker_image}\" /bin/bash"
         echo "------ execute end2end tests on Docker container ------"
-        retry(${params.retry_count}) {
+        retry(3) {
           sh "sudo ${params.docker} exec -i \$(sudo ${params.docker} ps --format \"{{.Names}}\") bash -c \"cd /my_tests && xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} || true && google-chrome --version && firefox --version\""
         }
         echo "------ cleanup all temporary files ------"
