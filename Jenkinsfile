@@ -2,9 +2,9 @@ pipeline {
   agent any
 
   parameters {
-    text(defaultValue: 'grme/nightwatch-chrome-firefox:0.0.3', description: '', name: 'docker_image')
-    text(defaultValue: 'npm-test-chrome', description: '', name: 'run_script_method')
-    text(defaultValue: '/Applications/Docker.app/Contents/Resources/bin/docker', description: '', name: 'docker')
+    string(defaultValue: 'grme/nightwatch-chrome-firefox:0.0.3', description: '', name: 'docker_image')
+    string(defaultValue: 'npm-test-chrome', description: '', name: 'run_script_method')
+    string(defaultValue: '/Applications/Docker.app/Contents/Resources/bin/docker', description: '', name: 'docker')
   }
 
   stages {
@@ -12,7 +12,7 @@ pipeline {
       steps {
         echo "=================================="
         echo "${params.docker}"
-        sh 'sudo /Applications/Docker.app/Contents/Resources/bin/docker ps -a'
+        sh 'sudo ${params.docker} ps -a'
         echo "=================================="
       }
     }
