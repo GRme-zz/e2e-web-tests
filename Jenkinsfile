@@ -12,7 +12,7 @@ pipeline {
       steps {
         echo "=================================="
         echo "${params.docker}"
-        sh 'sudo ${params.docker} ps -a'
+        sh 'sudo /Applications/Docker.app/Contents/Resources/bin/docker ps -a'
         echo "=================================="
       }
     }
