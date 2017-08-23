@@ -40,8 +40,6 @@ pipeline {
     always {
       echo "------ generate Cucumber report ------"
       cucumber "**/cucumber.json"
-      echo "------ delete directory content ------"
-      deleteDir()
       echo "------ send mail ------"
       mail to: "martin@just-qa.de",
              subject: "Pipeline: ${currentBuild.fullDisplayName}",
