@@ -19,7 +19,7 @@
     "arraylist": "latest",
     "chai": "latest",
     "chromedriver": "2.31.0",
-    "cucumber": "2.3.1",
+    "cucumber": "latest",
     "cucumber-html-report": "latest",
     "cucumber-html-reporter": "latest",
     "geckodriver": "1.7.1",
