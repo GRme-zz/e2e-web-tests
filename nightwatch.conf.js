@@ -17,8 +17,6 @@ require("nightwatch-cucumber")({
     "--require",
     "features/step_definitions",
     "--format",
-    "pretty",
-    "--format",
     "json:reports/json_result/cucumber.json",
     "features"
   ]

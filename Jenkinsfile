@@ -3,8 +3,10 @@ pipeline {
 
   parameters {
     string(defaultValue: 'sudo', description: '', name: 'sudo')
-    string(defaultValue: 'grme/nightwatch-chrome-firefox:0.0.3', description: '', name: 'docker_image')
-    string(defaultValue: 'npm-test-chrome', description: '', name: 'run_script_method')
+    string(defaultValue: 'grme/nightwatch-chrome-firefox:0.0.4', description: '', name: 'docker_image')
+    string(defaultValue: 'npm-test', description: '', name: 'run_script_method')
+    string(defaultValue: 'chrome', description: '', name: 'browser')
+    string(defaultValue: '--tag=run', description: '', name: 'tags')
     string(defaultValue: '/Applications/Docker.app/Contents/Resources/bin/docker', description: '', name: 'docker')
   }
 
@@ -21,7 +23,7 @@ pipeline {
         echo "------ start Docker container from image ------"
         sh "${params.sudo} ${params.docker} run -d -t -i -v \$(pwd):/my_tests/ \"${params.docker_image}\" /bin/bash"
         echo "------ execute end2end tests on Docker container ------"
-        sh "${params.sudo} ${params.docker} exec -i \$(${params.sudo} ${params.docker} ps --format \"{{.Names}}\") bash -c \"cd /my_tests && (xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} || true) && google-chrome --version && firefox --version\""
+        sh "${params.sudo} ${params.docker} exec -i \$(${params.sudo} ${params.docker} ps --format \"{{.Names}}\") bash -c \"cd /my_tests && (xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} -- ${params.browser} ${params.tags} || true) && google-chrome --version && firefox --version\""
         echo "------ cleanup all temporary files ------"
         sh "${params.sudo} rm -Rf \$(pwd)/tmp-*"
         sh "${params.sudo} rm -Rf \$(pwd)/.com.google*"

@@ -4,13 +4,15 @@
   "description": "end to end tests for web frontend",
   "main": "app.js",
   "scripts": {
-    "test": "./node_modules/.bin/nightwatch",
-    "test-chrome": "./node_modules/.bin/nightwatch --env chrome",
-    "npm-test-chrome": "rm -Rf ./node_modules/ && npm install && ./node_modules/.bin/nightwatch --env chrome",
-    "test-firefox": "./node_modules/.bin/nightwatch --env firefox",
-    "npm-test-firefox": "rm -Rf ./node_modules/ && npm install && ./node_modules/.bin/nightwatch --env firefox",
-    "test-safari": "./node_modules/.bin/nightwatch --env safari",
-    "test-parallel": "./node_modules/.bin/nightwatch --env chrome,firefox"
+    "test": "scripty",
+    "npm-test": "scripty",
+    "test-chrome": "scripty",
+    "npm-test-chrome": "scripty",
+    "test-firefox": "scripty",
+    "npm-test-firefox": "scripty",
+    "test-safari": "scripty",
+    "test-parallel": "scripty",
+    "posttest": "scripty"
   },
   "author": "GRme",
   "license": "ISC",

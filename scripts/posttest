@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+echo "EXECUTED COMMAND:"
+echo "node ./generalHelper/createCucumberReports.js"
+node ./helpers/createCucumberReports.js

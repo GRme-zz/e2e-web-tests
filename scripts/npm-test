@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+echo "EXECUTED COMMAND:"
+echo "rm -Rf ./node_modules/ && npm install && ./node_modules/.bin/nightwatch --env $1 $2"
+rm -Rf ./node_modules/ && npm install && ./node_modules/.bin/nightwatch --env $1 $2

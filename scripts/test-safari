@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+echo "EXECUTED COMMAND:"
+echo "./node_modules/.bin/nightwatch --env safari"
+./node_modules/.bin/nightwatch --env safari

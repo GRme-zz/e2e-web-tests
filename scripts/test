@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+echo "EXECUTED COMMAND:"
+echo "./node_modules/.bin/nightwatch --env $1 $2"
+./node_modules/.bin/nightwatch --env $1 $2
