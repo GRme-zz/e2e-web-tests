@@ -3,7 +3,7 @@ pipeline {
 
   parameters {
     string(defaultValue: 'sudo', description: '', name: 'sudo')
-    string(defaultValue: 'grme/nightwatch-chrome-firefox:0.0.4', description: '', name: 'docker_image')
+    string(defaultValue: 'grme/nightwatch-chrome-firefox:0.0.5', description: '', name: 'docker_image')
     string(defaultValue: 'npm-test', description: '', name: 'run_script_method')
     string(defaultValue: 'chrome', description: '', name: 'browser')
     string(defaultValue: '--tag=run', description: '', name: 'tags')

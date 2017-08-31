@@ -42,7 +42,7 @@ function getOptions(theme) {
     name: "NIKITA end2end tests",
     brandTitle: "NIKITA end2end tests",
     metadata: {
-      "App Version": "0.0.3",
+      "App Version": "0.0.4",
       "Test Environment": "AAT-000"
     }
   };

@@ -34,7 +34,7 @@
 #sh docker/runLocalTestsHeadlessOnLocal.sh $(pwd) npm-test chrome
 #sh docker/runLocalTestsHeadlessOnLocal.sh $(pwd) npm-test firefox --tag=run
 
-docker_image=grme/nightwatch-chrome-firefox:0.0.4
+docker_image=grme/nightwatch-chrome-firefox:0.0.5
 echo "------ stop all Docker containers ------" \
 && (docker stop $(docker ps -a -q) || echo "------ all Docker containers are still stopped ------") \
 && echo "------ remove all Docker containers ------" \
