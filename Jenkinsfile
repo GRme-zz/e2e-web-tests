@@ -23,7 +23,7 @@ pipeline {
         echo "------ start Docker container from image ------"
         sh "${params.sudo} ${params.docker} run --name e2e-web-tests-docker-container -d -t -i -v \$(pwd):/my_tests/ \"${params.docker_image}\" /bin/bash"
         echo "------ execute end2end tests on Docker container ------"
-        sh "${params.sudo} ${params.docker} exec -i e2e-web-tests-docker-container bash -c \"cd /my_tests && pwd && ls -lsa && (xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} -- ${params.browser} ${params.tags} || true) && google-chrome --version && firefox --version\""
+        sh "${params.sudo} ${params.docker} exec -i e2e-web-tests-docker-container bash -c \"cd / && pwd && ls -lsa && (xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} -- ${params.browser} ${params.tags} || true) && google-chrome --version && firefox --version\""
         echo "------ cleanup all temporary files ------"
         sh "${params.sudo} rm -Rf \$(pwd)/tmp-*"
         sh "${params.sudo} rm -Rf \$(pwd)/.com.google*"
