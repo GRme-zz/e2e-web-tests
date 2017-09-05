@@ -29,10 +29,6 @@ pipeline {
         sh "${params.sudo} rm -Rf \$(pwd)/.com.google*"
         sh "${params.sudo} rm -Rf \$(pwd)/rust_mozprofile*"
         sh "${params.sudo} rm -Rf \$(pwd)/.org.chromium*"
-        echo "------ stop e2e-web-tests Docker container again ------"
-        sh "(${params.sudo} ${params.docker} stop e2e-web-tests-docker-container || ${params.sudo} echo \"------ all e2e-web-tests Docker container are still stopped ------\")"
-        echo "------ remove e2e-web-tests Docker container again ------"
-        sh "(${params.sudo} ${params.docker} rm e2e-web-tests-docker-container || ${params.sudo} echo \"------ all e2e-web-tests Docker container are still removed ------\")"
       }
     }
   }
