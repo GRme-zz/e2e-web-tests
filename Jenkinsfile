@@ -21,7 +21,7 @@ pipeline {
         echo "------ pull Docker image from Docker Cloud ------"
         sh "${params.sudo} ${params.docker} pull \"${params.docker_image}\""
         echo "------ start Docker container from image ------"
-        sh "${params.sudo} ${params.docker} run --name e2e-web-tests-docker-container -d -t -i --mount type=bind,source=\"\$(pwd)\",target=/my_tests \"${params.docker_image}\" /bin/bash"
+        sh "${params.sudo} ${params.docker} run --name e2e-web-tests-docker-container -d -t -i -v \$(pwd)/:/my_tests/ \"${params.docker_image}\" /bin/bash"
         echo "------ execute end2end tests on Docker container ------"
         sh "${params.sudo} ${params.docker} exec -i e2e-web-tests-docker-container bash -c \"cd / && pwd && ls -lsa && (xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} -- ${params.browser} ${params.tags} || true) && google-chrome --version && firefox --version\""
         echo "------ cleanup all temporary files ------"
