@@ -28,20 +28,21 @@
 
 docker_image=grme/nightwatch-chrome-firefox:0.0.5
 echo "------ stop all Docker containers ------" \
-&& (docker stop $(docker ps -a -q) || echo "------ all Docker containers are still stopped ------") \
+&& (docker stop e2e-web-test-docker-container || echo "------ all Docker containers are still stopped ------") \
 && echo "------ remove all Docker containers ------" \
-&& (docker rm $(docker ps -a -q) || echo "------ all Docker containers are still removed ------") \
+&& (docker rm e2e-web-test-docker-container || echo "------ all Docker containers are still removed ------") \
 && echo "------ pull Docker image '"$docker_image"' from Docker Cloud ------" \
 && docker pull "$docker_image" \
 && echo "------ start Docker container from image ------" \
-&& docker run -d -t -i -v $1:/my_tests/ "$docker_image" /bin/bash \
+&& docker run --name e2e-web-test-docker-container -d -t -i -v $1:/my_tests/ "$docker_image" /bin/bash \
 && echo "------ execute end2end tests on Docker container ------" \
-&& docker exec -it $(docker ps --format "{{.Names}}") bash -c \
+&& docker exec -it e2e-web-test-docker-container bash -c \
   "rm -Rf /my_tests/project \
   && git clone $2 /my_tests/project \
   && cd /my_tests/project \
   && git checkout $6 \
-  && xvfb-run --server-args='-screen 0 1600x1200x24' npm run $3 -- $4 $5 || true \
+  && xvfb-run --server-args='-screen 0 1600x1200x24' npm run $3 -- $4 $5 \
+  && npm run posttest \
   && google-chrome --version \
   && firefox --version" \
 && echo "------ cleanup all temporary files ------" \
@@ -50,6 +51,6 @@ echo "------ stop all Docker containers ------" \
 && rm -Rf $1/project/rust_mozprofile* \
 && rm -Rf $1/.org.chromium* \
 && echo "------ stop all Docker containers again ------" \
-&& (docker stop $(docker ps -a -q) || echo "------ all Docker containers are still stopped ------") \
+&& (docker stop e2e-web-test-docker-container || echo "------ all Docker containers are still stopped ------") \
 && echo "------ remove all Docker containers again ------" \
-&& (docker rm $(docker ps -a -q) || echo "------ all Docker containers are still removed ------")
+&& (docker rm e2e-web-test-docker-container || echo "------ all Docker containers are still removed ------")
