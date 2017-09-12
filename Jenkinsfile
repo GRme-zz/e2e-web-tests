@@ -36,12 +36,6 @@ pipeline {
       sh "${params.sudo} rm -Rf \$(pwd)/.com.google*"
       sh "${params.sudo} rm -Rf \$(pwd)/rust_mozprofile*"
       sh "${params.sudo} rm -Rf \$(pwd)/.org.chromium*"
-      echo "------ stop Docker container again ------"
-      sh "(${params.sudo} ${params.docker} stop e2e-web-tests-docker-container || sudo echo \"------ all Docker containers are still stopped ------\")"
-      echo "------ remove Docker container again ------"
-      sh "(${params.sudo} ${params.docker} rm e2e-web-tests-docker-container || sudo echo \"------ all Docker containers are still removed ------\")"
-      echo "------ generate Cucumber report ------"
-      cucumber "**/cucumber.json"
     }
   }
 }
