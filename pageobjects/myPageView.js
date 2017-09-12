@@ -41,7 +41,7 @@ module.exports = {
       },
 
       testIsRunning() {
-        return assert.equal(true, true);
+        return assert.equal(true, false);
       }
     }
   ]
