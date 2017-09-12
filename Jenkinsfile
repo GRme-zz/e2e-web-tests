@@ -24,7 +24,7 @@ pipeline {
         sh "pwd"
         sh "${params.sudo} ${params.docker} run --name e2e-web-tests-docker-container -d -t -i -v \$(pwd):/my_tests/ \"${params.docker_image}\" /bin/bash"
         echo "------ execute end2end tests on Docker container ------"
-        sh "${params.sudo} ${params.docker} exec -i e2e-web-tests-docker-container bash -c \"cd / && pwd && ls -lsa && google-chrome --version && firefox --version && xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} -- ${params.browser} ${params.tags}\""
+        sh "${params.sudo} ${params.docker} exec -i e2e-web-tests-docker-container bash -c \"cd /my_tests && google-chrome --version && firefox --version && xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} -- ${params.browser} ${params.tags}\""
       }
     }
   }
@@ -36,6 +36,12 @@ pipeline {
       sh "${params.sudo} rm -Rf \$(pwd)/.com.google*"
       sh "${params.sudo} rm -Rf \$(pwd)/rust_mozprofile*"
       sh "${params.sudo} rm -Rf \$(pwd)/.org.chromium*"
+      echo "------ stop Docker container again ------"
+      sh "(${params.sudo} ${params.docker} stop e2e-web-tests-docker-container || sudo echo \"------ all Docker containers are still stopped ------\")"
+      echo "------ remove Docker container again ------"
+      sh "(${params.sudo} ${params.docker} rm e2e-web-tests-docker-container || sudo echo \"------ all Docker containers are still removed ------\")"
+      echo "------ generate Cucumber report ------"
+      cucumber "**/cucumber.json"
     }
   }
 }
