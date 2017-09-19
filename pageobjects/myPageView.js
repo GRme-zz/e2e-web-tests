@@ -14,30 +14,21 @@ module.exports = {
   elements: {},
   commands: [
     {
-      async goToGoogleMainPage(client) {
-        return await client.url("http://www.google.com");
+      goToGoogleMainPage(client) {
+        return client.url("http://www.google.com");
       },
 
-      checkAllElementsAreVisibleWithoutAsync(client) {
+      checkAllElementsAreVisible(client) {
+        client.setValue(validSearchField, "mal ein test");
         return (
           client
             //selector 'invalidGoogleLogo' can not be found
-            .waitForElementIsVisible(validGoogleLogo)
+            .waitForElementVisible(validGoogleLogo)
             //selector 'invalidSearchField' can not be found
-            .waitForElementIsVisible(validSearchField)
+            .waitForElementVisible(validSearchField)
             //selector 'invalidSearchButton' can not be found
-            .waitForElementIsVisible(validSearchButton)
+            .waitForElementVisible(validSearchButton)
         );
-      },
-
-      async checkAllElementsAreVisibleWithAsync(client) {
-        //selector 'invalidGoogleLogo' can not be found
-        await client.waitForElementVisible(validGoogleLogo);
-        //selector 'invalidSearchField' can not be found
-        await client.waitForElementVisible(validSearchField);
-        //selector 'invalidSearchButton' can not be found
-        await client.waitForElementVisible(validSearchButton);
-        return client;
       },
 
       testIsRunning() {

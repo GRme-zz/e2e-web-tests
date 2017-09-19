@@ -8,12 +8,8 @@ defineSupportCode(({ Given, When, Then }) => {
     return myPage.goToGoogleMainPage(client);
   });
 
-  Then(/^all necessary elements are visible without async$/, () => {
-    return myPage.checkAllElementsAreVisibleWithoutAsync(client);
-  });
-
-  Then(/^all necessary elements are visible with async$/, () => {
-    return myPage.checkAllElementsAreVisibleWithAsync(client);
+  Then(/^all necessary elements are visible$/, () => {
+    return myPage.checkAllElementsAreVisible(client);
   });
 
   When(/^a test is running$/, () => {

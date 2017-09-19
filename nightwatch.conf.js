@@ -7,7 +7,7 @@ const seleniumdriver = require("selenium-webdriver");
 require("nightwatch-cucumber")({
   cucumberArgs: [
     "--tags",
-    "@run",
+    "@enabled",
     "--compiler",
     "js:babel-core/register",
     "--require",
