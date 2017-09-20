@@ -2,7 +2,6 @@ pipeline {
   agent any
 
   parameters {
-    string(defaultValue: 'sudo', description: '', name: 'sudo')
     string(defaultValue: 'npm-test', description: '', name: 'run_script_method')
     string(defaultValue: 'chrome', description: '', name: 'browser')
     string(defaultValue: '--tag=run', description: '', name: 'tags')
@@ -12,7 +11,7 @@ pipeline {
     stage('Test') {
       steps {
         echo "------ start the end2end tests ------"
-        sh "${params.sudo} xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} -- ${params.browser} ${params.tags}\""
+        sh "xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} -- ${params.browser} ${params.tags}\""
         echo "------ end the end2end tests ------"
       }
     }
