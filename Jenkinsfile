@@ -12,7 +12,7 @@ pipeline {
     stage('Test') {
       steps {
         echo "------ start the end2end tests ------"
-        sh "${params.sudo} xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} -- ${params.browser} ${params.tags}\"
+        sh "${params.sudo} xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run ${params.run_script_method} -- ${params.browser} ${params.tags}\""
         echo "------ end the end2end tests ------"
       }
     }
