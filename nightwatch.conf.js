@@ -51,6 +51,7 @@ const config = {
       selenium_port: 4444,
       selenium_host:
         "ae7cf3bc99de511e7a1090ae1abe15a3-1708516398.eu-west-1.elb.amazonaws.com",
+      //selenium_host: "test-selenium-hub",
       desiredCapabilities: {
         browserName: "phantomjs",
         javascriptEnabled: true,
