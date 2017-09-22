@@ -20,10 +20,10 @@ pipeline {
   post {
     always {
       echo "------ cleanup all temporary files ------"
-      sh "${params.sudo} rm -Rf \$(pwd)/tmp-*"
-      sh "${params.sudo} rm -Rf \$(pwd)/.com.google*"
-      sh "${params.sudo} rm -Rf \$(pwd)/rust_mozprofile*"
-      sh "${params.sudo} rm -Rf \$(pwd)/.org.chromium*"
+      sh "rm -Rf \$(pwd)/tmp-*"
+      sh "rm -Rf \$(pwd)/.com.google*"
+      sh "rm -Rf \$(pwd)/rust_mozprofile*"
+      sh "rm -Rf \$(pwd)/.org.chromium*"
       echo "------ generate Cucumber report ------"
       cucumber "**/cucumber.json"
     }
