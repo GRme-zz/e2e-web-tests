@@ -30,12 +30,11 @@ const config = {
   page_objects_path: "pageobjects",
   disable_colors: false,
   selenium: {
-    start_process: false,
-    //server_path: seleniumServer.path,
+    start_process: false
+    //server_path: seleniumServer.path
     //log_path: ".",
-    host:
-      "http://ae7cf3bc99de511e7a1090ae1abe15a3-1708516398.eu-west-1.elb.amazonaws.com",
-    port: 4444
+    //host: "127.0.0.1"
+    //port: 4444
   },
   test_settings: {
     default: {
@@ -51,7 +50,7 @@ const config = {
       //launch_url: "http://localhost:8087",
       selenium_port: 4444,
       selenium_host:
-        "http://ae7cf3bc99de511e7a1090ae1abe15a3-1708516398.eu-west-1.elb.amazonaws.com",
+        "ae7cf3bc99de511e7a1090ae1abe15a3-1708516398.eu-west-1.elb.amazonaws.com",
       desiredCapabilities: {
         browserName: "phantomjs",
         javascriptEnabled: true,
