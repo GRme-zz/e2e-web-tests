@@ -24,7 +24,9 @@ pipeline {
       sh "rm -Rf \$(pwd)/.com.google*"
       sh "rm -Rf \$(pwd)/rust_mozprofile*"
       sh "rm -Rf \$(pwd)/.org.chromium*"
-      echo "------ generate Cucumber report ------"
+      echo "------ generate Cucumber report in project ------"
+      sh "xvfb-run --server-args=\'-screen 0 1600x1200x24\' npm run posttest"
+      echo "------ generate Cucumber report with plugin ------"
       cucumber "**/cucumber.json"
     }
   }
